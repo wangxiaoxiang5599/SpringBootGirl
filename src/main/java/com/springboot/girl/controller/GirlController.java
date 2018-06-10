@@ -2,7 +2,11 @@ package com.springboot.girl.controller;
 
 import com.springboot.girl.domain.Girl;
 import com.springboot.girl.Repository.GirlRepository;
+import com.springboot.girl.domain.Result;
 import com.springboot.girl.service.GirlService;
+import com.springboot.girl.utils.ResultUtil;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,27 +49,30 @@ public class GirlController {
         return girlRepository.findByAge(age);
     }
 
-    @ApiOperation(value = "增加一个女生", notes = "")
+/*    @ApiOperation(value = "增加一个女生", notes = "")
     @PostMapping(value = "/girls")
-    public Girl girlAdd(@RequestParam("cupSize") String cupSize,
-                        @RequestParam("age") Integer age) {
+    public Result<Girl> girlAdd(@RequestParam("cupSize") String cupSize,
+                        @RequestParam("age") Integer age,
+                        @RequestParam("money") Long money) {
         Girl girl = new Girl();
         girl.setCupSize(cupSize);
         girl.setAge(age);
-        return girlRepository.save(girl);
-    }
+        girl.setMoney(money);
+        girlRepository.save(girl);
+        Result<Girl> girlResult = new Result<Girl>();
+        girlResult.setCode(0);
+        girlResult.setMessage("成功");
+        girlResult.setData(girl);
+        return girlResult;
+    }*/
 
-    /*对传入数据格式有要求，swagger2传入json格式为空。postman传入keyvalue格式ok*/
     @ApiOperation(value = "增加一个女生", notes = "")
     @PostMapping(value = "/girls/limit")
-    public Girl girlAdd(@Valid Girl girl, BindingResult bindingResult) {
+    public Result<Girl> girlAdd(@Valid @ModelAttribute Girl girl, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
-            return null;
+            return ResultUtil.error(1,bindingResult.getFieldError().getDefaultMessage());
         }
-        girl.setCupSize(girl.getCupSize());
-        girl.setAge(girl.getAge());
-        return girlRepository.save(girl);
+        return ResultUtil.success(girlRepository.save(girl));
     }
 
     @ApiOperation(value = "增加两个女生", notes = "在service层启用事物注解")
@@ -78,11 +85,13 @@ public class GirlController {
     @PutMapping(value = "/girls/{id}")
     public Girl girlUpdate(@PathVariable("id") Integer id,
                            @RequestParam("cupSize") String cupSize,
-                           @RequestParam("age") Integer age) {
+                           @RequestParam("age") Integer age,
+                           @RequestParam("money") Long money) {
         Girl girl = new Girl();
         girl.setId(id);
         girl.setCupSize(cupSize);
         girl.setAge(age);
+        girl.setMoney(money);
         return girlRepository.save(girl);
     }
 

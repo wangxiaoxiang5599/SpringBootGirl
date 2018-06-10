@@ -17,11 +17,13 @@ public class GirlService {
         Girl girlA = new Girl();
         girlA.setCupSize("A");
         girlA.setAge(18);
+        girlA.setMoney(1900l);
         girlRepository.save(girlA);
 
         Girl girlB = new Girl();
         girlB.setCupSize("B");
         girlB.setAge(18);
+        girlB.setMoney(2000l);
         girlRepository.save(girlB);
     }
 }
