@@ -1,9 +1,12 @@
-package com.springboot.girl;
+package com.springboot.girl.properties;
+
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
+@PropertySource("girl.yml")
 @ConfigurationProperties(prefix = "girl")
 public class GirlProperties {
 

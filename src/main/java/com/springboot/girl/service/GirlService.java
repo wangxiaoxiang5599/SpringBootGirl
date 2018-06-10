@@ -1,5 +1,7 @@
-package com.springboot.girl;
+package com.springboot.girl.service;
 
+import com.springboot.girl.Repository.GirlRepository;
+import com.springboot.girl.domain.Girl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
