@@ -1,4 +1,4 @@
-package com.springboot.girl.Repository;
+package com.springboot.girl.repository;
 
 import com.springboot.girl.domain.Girl;
 import org.springframework.data.jpa.repository.JpaRepository;

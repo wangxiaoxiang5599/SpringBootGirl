@@ -1,12 +1,10 @@
 package com.springboot.girl.controller;
 
 import com.springboot.girl.domain.Girl;
-import com.springboot.girl.Repository.GirlRepository;
+import com.springboot.girl.repository.GirlRepository;
 import com.springboot.girl.domain.Result;
 import com.springboot.girl.service.GirlService;
 import com.springboot.girl.utils.ResultUtil;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,7 +68,7 @@ public class GirlController {
     @PostMapping(value = "/girls/limit")
     public Result<Girl> girlAdd(@Valid @ModelAttribute Girl girl, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return ResultUtil.error(1,bindingResult.getFieldError().getDefaultMessage());
+            return ResultUtil.error(bindingResult.getFieldError().getDefaultMessage());
         }
         return ResultUtil.success(girlRepository.save(girl));
     }
@@ -99,6 +97,11 @@ public class GirlController {
     @DeleteMapping(value = "/girls/{id}")
     public void girlDelete(@PathVariable("id") Integer id) {
         girlRepository.deleteById(id);
+    }
+
+    @GetMapping(value = "/girls/getAge/{id}")
+    public void getAge(@PathVariable("id") Integer id) throws Exception{
+        girlService.getAge(id);
     }
 
 }
