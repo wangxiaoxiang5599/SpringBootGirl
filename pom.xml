@@ -81,7 +81,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         
-	<plugin>
+<!--	<plugin>
 
                        <groupId>org.apache.maven.plugins</groupId>
 
@@ -155,10 +155,10 @@
 
                             <version>3.5</version>
 
-                      </plugin>     
+                      </plugin>    -->
 	</plugins>
 	</build>
-	<reporting>
+<!--	<reporting>
 		<plugins>
 		 <plugin>
 
@@ -187,9 +187,9 @@
 
                       <xmlOutput>true</xmlOutput>
 
-                      <!-- Optional directoryto put findbugs xdoc xml report -->
+                      &lt;!&ndash; Optional directoryto put findbugs xdoc xml report &ndash;&gt;
 
-                      <!--<xmlOutputDirectory>target/site</xmlOutputDirectory>-->
+                      &lt;!&ndash;<xmlOutputDirectory>target/site</xmlOutputDirectory>&ndash;&gt;
 
                       <findbugsXmlOutput>true</findbugsXmlOutput>
 
@@ -208,7 +208,7 @@
 
                       </plugin>
 		</plugins>
-	</reporting>
+	</reporting>-->
 
     
 
