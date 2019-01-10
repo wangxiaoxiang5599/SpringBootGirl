@@ -3,3 +3,5 @@ server:
 girl:
   cupSize: F
   age: 18
+logging:
+  config: ./conf/logback.xml

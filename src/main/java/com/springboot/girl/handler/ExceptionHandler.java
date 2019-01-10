@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 public class ExceptionHandler {
 
-    @org.springframework.web.bind.annotation.ExceptionHandler(value = Exception.class)
-    @ResponseBody
-    public Result handler(Exception e) {
-        if (e instanceof GirlException) {
-            GirlException girlException = (GirlException) e;
-            return ResultUtil.error(girlException.getMessage());
-        }
-        return ResultUtil.error(ResultEnum.UNKONW_ERROR);
-    }
+	@org.springframework.web.bind.annotation.ExceptionHandler(value = Exception.class)
+	@ResponseBody
+	public Result handler(Exception e) {
+		if (e instanceof GirlException) {
+			GirlException girlException = (GirlException) e;
+			return ResultUtil.error(girlException.getMessage());
+		}
+		return ResultUtil.error(ResultEnum.UNKONW_ERROR);
+	}
 }

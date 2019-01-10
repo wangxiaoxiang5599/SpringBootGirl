@@ -1,216 +1,191 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.springboot</groupId>
-    <artifactId>girl</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+	<groupId>com.springboot</groupId>
+	<artifactId>girl</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
-    <name>girl</name>
-    <description>Demo project for Spring Boot</description>
+	<name>girl</name>
+	<description>Demo project for Spring Boot</description>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.1.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.1.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-    </properties>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
 
-    <dependencies>
-        <!-- core -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
+	<dependencies>
+		<!-- core -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
 
-        <!-- web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+		<!-- web -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 
-        <!-- jpa -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <!-- mysql -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
+		<!-- jpa -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<!-- mysql -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
 
-        <!-- aop -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
+		<!-- aop -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
 
-        <!-- Swagger2-->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.2.2</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.2.2</version>
-        </dependency>
+		<!-- Swagger2 -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.2.2</version>
+		</dependency>
 
-        <!-- 测试 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        
-<!--	<plugin>
-
-                       <groupId>org.apache.maven.plugins</groupId>
-
-                       <artifactId>maven-checkstyle-plugin</artifactId>
-
-                        <version>2.16</version>
-
-                        <executions>
-
-                             <execution>
-
-                               <id>validate</id>
-
-                               <phase>validate</phase>
-
-                               <configuration>
-
-                                    <configLocation>checkstyle.xml</configLocation>
-
-                                    <encoding>UTF-8</encoding>
-
-                                    <consoleOutput>true</consoleOutput>
-
-                                    <failsOnError>true</failsOnError>
-
-                                    <linkXRef>false</linkXRef>
-
-                               </configuration>
-
-                               <goals>
-
-                                    <goal>check</goal>
-
-                               </goals>
-
-                             </execution>
-
-                        </executions>
-
-                      </plugin>
-		<plugin>
-
-                                   <groupId>org.codehaus.mojo</groupId>
-
-                                   <artifactId>findbugs-maven-plugin</artifactId>
-
-                                   <version>3.0.1</version>
-
-                                   <configuration>
-
-                                   <threshold>High</threshold>
-
-                                   <effort>Default</effort>
-
-                                   <findbugsXmlOutput>true</findbugsXmlOutput>
-
-                                   <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
-
-                                   <xmlOutput>true</xmlOutput>
-
-                                   <findbugsXmlOutputDirectory>target/site</findbugsXmlOutputDirectory>
-
-                                   </configuration>
-
-                     </plugin>
-		 <plugin>
-
-                            <groupId>org.apache.maven.plugins</groupId>
-
-                            <artifactId>maven-pmd-plugin</artifactId>
-
-                            <version>3.5</version>
-
-                      </plugin>    -->
-	</plugins>
-	</build>
-<!--	<reporting>
+		<!-- 测试 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
 		<plugins>
-		 <plugin>
-
-                            <groupId>org.apache.maven.plugins</groupId>
-
-                            <artifactId>maven-checkstyle-plugin</artifactId>
-
-                            <version>2.16</version>
-
-                            <configuration>
-
-                              <configLocation>checkstyle.xml</configLocation>
-
-                            </configuration>
-
-                     </plugin>
-		<plugin>
-
-                      <groupId>org.codehaus.mojo</groupId>
-
-                      <artifactId>findbugs-maven-plugin</artifactId>
-
-                      <version>3.0.1</version>
-
-                      <configuration>
-
-                      <xmlOutput>true</xmlOutput>
-
-                      &lt;!&ndash; Optional directoryto put findbugs xdoc xml report &ndash;&gt;
-
-                      &lt;!&ndash;<xmlOutputDirectory>target/site</xmlOutputDirectory>&ndash;&gt;
-
-                      <findbugsXmlOutput>true</findbugsXmlOutput>
-
-                      <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
-
-                      </configuration>
-
-               </plugin>
-		<plugin>
-
-                            <groupId>org.apache.maven.plugins</groupId>
-
-                            <artifactId>maven-pmd-plugin</artifactId>
-
-                            <version>3.5</version>
-
-                      </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<configuration>
+					<outputDirectory>${project.build.directory}/lib</outputDirectory>
+					<excludeTransitive>false</excludeTransitive> <!-- 表示是否不包含间接依赖的包 -->
+					<stripVersion>false</stripVersion> <!-- 去除版本信息 -->
+				</configuration>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<!-- 拷贝项目依赖包到lib/目录下 -->
+							<outputDirectory>${project.build.directory}/Girl/lib</outputDirectory>
+							<excludeTransitive>false</excludeTransitive>
+							<stripVersion>false</stripVersion>
+							<includeScope>runtime</includeScope>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- 项目资源插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<encoding>UTF-8</encoding>
+							<!-- 拷贝项目src/main/resources/下，除.bat以外的所有文件到conf/目录下 -->
+							<outputDirectory>${project.build.directory}/Girl/conf</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/resources/</directory>
+									<filtering>false</filtering>
+									<includes>
+										<include>*.properties</include>
+										<include>*.json</include>
+										<include>*.xml</include>
+										<include>**/*.*</include>
+										<include>**/*</include>
+									</includes>
+								</resource>
+								<resource>
+									<directory>conf</directory>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>bin-resources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<encoding>UTF-8</encoding>
+							<!-- 拷贝项目scripts/下，除.bat以外的所有文件到bin/目录下 -->
+							<outputDirectory>${project.build.directory}/Girl/bin</outputDirectory>
+							<resources>
+								<resource>
+									<directory>scripts</directory>
+									<filtering>false</filtering>
+									<includes>
+										<include>*.sh</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- 打包插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<!-- 生成MANIFEST.MF的设置 -->
+						<manifest>
+							<!-- 为依赖包添加路径, 这些路径会写在MANIFEST文件的Class-Path下 -->
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<useUniqueVersions>false</useUniqueVersions>
+							<!-- jar启动入口类 -->
+							<mainClass>com.springboot.girl.GirlApplication</mainClass>
+						</manifest>
+						<manifestEntries>
+							<!-- 在Class-Path下添加配置文件的路径 -->
+							<Class-Path>conf/</Class-Path>
+						</manifestEntries>
+					</archive>
+					<excludes>
+						<exclude>*.properties</exclude>
+						<exclude>*.xml</exclude>
+						<exclude>*.yaml</exclude>
+						<exclude>*.json</exclude>
+					</excludes>
+					<outputDirectory>${project.build.directory}/Girl/</outputDirectory>
+				</configuration>
+			</plugin>
 		</plugins>
-	</reporting>-->
-
-    
-
-
+	</build>
 </project>

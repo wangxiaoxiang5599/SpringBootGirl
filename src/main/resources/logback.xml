@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Please refer to : http://logback.qos.ch/manual/configuration.html -->
+
+<!-- The 'configuration' parameter is as follows: -->
+<!-- scan: true means automatically reloading configuration file upon modification -->
+<!-- scanPeriod: automatically reloading check period -->
+<!-- debug: print the debug info or not, type: boolean (true/false) -->
+<configuration scan="true" scanPeriod="120 seconds" debug="false">
+
+	<!-- The scope of property can be "context, local, system" -->
+	<property scope="context" name="LOG_HOME" value="${user.dir}" />
+	<property scope="context" name="CONTEXT_NAME"
+		value="OperatingPlatformCloudLoggingContext" />
+	<contextName>${CONTEXT_NAME}</contextName>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
+			by default -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	<!-- 2. Debug log 保存过去5天的日志 或者日志达到了50MB就转存一个日志 -->
+	<appender name="debug_rolling_appender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- Common configuration -->
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | %-5level | [%thread] | %msg%n
+			</pattern>
+		</encoder>
+		<!-- File configuration -->
+		<file>${LOG_HOME}/logs/debug/operating_platform_debug.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_HOME}/logs/debug/girl_springboot_debug_%d{yyyyMMdd}_%i.log
+			</FileNamePattern>
+			<cleanHistoryOnStart>false</cleanHistoryOnStart>
+			<MaxHistory>15</MaxHistory>
+			<MaxFileSize>500mb</MaxFileSize>
+			<totalSizeCap>50GB</totalSizeCap>
+		</rollingPolicy>
+	</appender>
+	<appender name="debug_appender_thread" class="ch.qos.logback.classic.AsyncAppender">
+		<queueSize>1024</queueSize>
+		<discardingThreshold>10</discardingThreshold>
+		<appender-ref ref="debug_rolling_appender" />
+	</appender>
+
+	<!-- 3. Run log 保存过去5天的日志 或者日志达到了50MB就转存一个日志 -->
+	<appender name="run_rolling_appender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | %-5level | [%thread] | %msg%n
+			</pattern>
+		</encoder>
+		<file>${LOG_HOME}/logs/run/girl_springboot_run.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_HOME}/logs/run/girl_springboot_run_%d{yyyyMMdd}_%i.log
+			</FileNamePattern>
+			<cleanHistoryOnStart>false</cleanHistoryOnStart>
+			<MaxHistory>5</MaxHistory>
+			<MaxFileSize>50mb</MaxFileSize>
+			<totalSizeCap>2GB</totalSizeCap>
+		</rollingPolicy>
+	</appender>
+	<appender name="run_appender_thread" class="ch.qos.logback.classic.AsyncAppender">
+		<queueSize>1024</queueSize>
+		<discardingThreshold>10</discardingThreshold>
+		<appender-ref ref="run_rolling_appender" />
+	</appender>
+
+	<!-- 4. Interface Log 保存过去5天的日志 或者日志达到了50MB 就转存一个 -->
+	<appender name="interface_rolling_appender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | %-5level | [%thread] | %msg%n
+			</pattern>
+		</encoder>
+		<file>${LOG_HOME}/logs/interface/girl_springboot_interface.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_HOME}/logs/interface/girl_springboot_interface_%d{yyyyMMdd}_%i.log
+			</FileNamePattern>
+			<cleanHistoryOnStart>false</cleanHistoryOnStart>
+			<MaxHistory>5</MaxHistory>
+			<MaxFileSize>50mb</MaxFileSize>
+			<totalSizeCap>2GB</totalSizeCap>
+		</rollingPolicy>
+	</appender>
+	<appender name="interface_appender_thread" class="ch.qos.logback.classic.AsyncAppender">
+		<queueSize>1024</queueSize>
+		<discardingThreshold>10</discardingThreshold>
+		<appender-ref ref="interface_rolling_appender" />
+	</appender>
+
+	<!-- 5. Alarm Log 保存过去5天的日志 或者日志达到了50MB 就转存一个 -->
+	<appender name="alarm_rolling_appender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | %-5level | [%thread] | %msg%n
+			</pattern>
+		</encoder>
+		<file>${LOG_HOME}/logs/alarm/girl_springboot_alarm.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_HOME}/logs/alarm/girl_springboot_alarm_%d{yyyyMMdd}_%i.log
+			</FileNamePattern>
+			<cleanHistoryOnStart>false</cleanHistoryOnStart>
+			<MaxHistory>5</MaxHistory>
+			<MaxFileSize>50mb</MaxFileSize>
+			<totalSizeCap>2GB</totalSizeCap>
+		</rollingPolicy>
+	</appender>
+	<appender name="alarm_appender_thread" class="ch.qos.logback.classic.AsyncAppender">
+		<queueSize>1024</queueSize>
+		<discardingThreshold>10</discardingThreshold>
+		<appender-ref ref="alarm_rolling_appender" />
+	</appender>
+
+	<!-- 6. Third party framework Log 保存过去5天的日志，每个日志50MB大小 或者达到50MB后重新生成一个日志 -->
+	<appender name="3rdFramework_rolling_appender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | [%thread] | %-5level |
+				%logger{50} | %msg%n</pattern>
+		</encoder>
+		<file>${LOG_HOME}/logs/platform/girl_springboot_platform.log
+		</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_HOME}/logs/platform/girl_springboot_platform_%d{yyyyMMdd}_%i.log
+			</FileNamePattern>
+			<cleanHistoryOnStart>false</cleanHistoryOnStart>
+			<MaxHistory>5</MaxHistory>
+			<MaxFileSize>50mb</MaxFileSize>
+			<totalSizeCap>2GB</totalSizeCap>
+		</rollingPolicy>
+	</appender>
+	<appender name="3rdFramework_appender_thread" class="ch.qos.logback.classic.AsyncAppender">
+		<queueSize>1024</queueSize>
+		<discardingThreshold>10</discardingThreshold>
+		<appender-ref ref="3rdFramework_rolling_appender" />
+	</appender>
+
+	<!-- Log configuration specification -->
+	<!-- level can be: OFF ERROR DEBUG INFO DEBUG TRACE ALL -->
+	<!-- additivity: should be false as we will not use this feature of LOGBACK -->
+	<logger name="com.huawei.debug" level="OFF" additivity="false">
+		<appender-ref ref="debug_appender_thread" />
+	</logger>
+
+	<!-- RUN日志 打印的级别是INFO -->
+	<logger name="com.huawei.run" level="INFO" additivity="false">
+		<appender-ref ref="run_appender_thread" />
+
+	</logger>
+
+	<!-- 接口日志 默认的打印的级别是INFO， 当接口调用出错后打印的级别是DEBUG -->
+	<logger name="com.huawei.interface" level="INFO" additivity="false">
+		<appender-ref ref="interface_appender_thread" />
+
+	</logger>
+
+	<logger name="com.huawei.alarm" level="WARN" additivity="false">
+		<appender-ref ref="alarm_appender_thread" />
+	</logger>
+
+	<!-- 平台日志 主要是记录一些其他的第三方平台的日志 -->
+	<logger name="com.huawei.platform" level="INFO" additivity="false">
+		<appender-ref ref="3rdFramework_appender_thread" />
+	</logger>
+
+	<!-- 其他类型的日志 打到第三方的日志中 -->
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="3rdFramework_appender_thread" />
+	</root>
+</configuration>

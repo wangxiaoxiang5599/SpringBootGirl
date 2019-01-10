@@ -10,21 +10,21 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/hello")
 public class HelloCotroller {
 
-    @Autowired
-    private GirlProperties girlProperties;
+	@Autowired
+	private GirlProperties girlProperties;
 
-    @ApiOperation(value="sayId", notes="")
-    @ApiImplicitParam(name = "id", value = "你好", required = true, dataType = "String",paramType = "path")
-    //@RequestMapping(value = "/say/{id}", method = RequestMethod.GET)
-    @GetMapping(value = "/say{id}")
-    public String say(@PathVariable("id") Integer id) {
+	@ApiOperation(value = "sayId", notes = "")
+	@ApiImplicitParam(name = "id", value = "你好", required = true, dataType = "String", paramType = "path")
+	// @RequestMapping(value = "/say/{id}", method = RequestMethod.GET)
+	@GetMapping(value = "/say{id}")
+	public String say(@PathVariable("id") Integer id) {
 
-        return "id:" + id;
-    }
+		return "id:" + id;
+	}
 
-    @ApiOperation(value="sayProperties", notes="")
-    @GetMapping(value = "/say")
-    public String say() {
-        return girlProperties.getCupSize();
-    }
+	@ApiOperation(value = "sayProperties", notes = "")
+	@GetMapping(value = "/say")
+	public String say() {
+		return girlProperties.getCupSize();
+	}
 }
